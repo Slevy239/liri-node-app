@@ -12,7 +12,7 @@
 
 
 
-### Finds Concerts
+### Find Concerts
 Using the Bands in Town API, The user is able to search for artists tour dates based on command line inputs. This application retrieves dates, venue locations and time of the event.
 
 
