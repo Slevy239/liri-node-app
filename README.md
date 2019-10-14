@@ -3,7 +3,7 @@
 
 
 
-## functionality
+## Functionality
 * Finds Concerts 
 * Searchs for Songs
 * Finds movies and details
