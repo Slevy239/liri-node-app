@@ -35,13 +35,12 @@ switch (command) {
 function concert() {
     axios.get("https://rest.bandsintown.com/artists/" + inputStr + "/events?app_id=codingbootcamp")
         .then(function (response) {
-            var Information = response.data[0]
+            var info = response.data[0]
 
             for (var i = 0; i < response.data.length; i++) {
-                var dateTime = response.data[i].datatime;
                 var results = response.data[i].venue.name;
 
-                var date = new Date(Information.datetime);
+                var date = new Date(info.datetime);
                 var converted = date.toLocaleString();
 
                 console.log("\n");
@@ -62,7 +61,7 @@ function concert() {
 }
 
 
-function song(input) {
+function song(inputStr) {
     if (!inputStr) {
         inputStr = "Chalk Dust Torture";
     }
@@ -134,6 +133,22 @@ function movie(inputStr) {
 }
 
 
-function doThis(value) {
+function doThis() {
 
+    fs.readFile("random.txt" ,"utf8", function(error, data) {
+        if (error) {
+            return console.log(error);
+        }
+
+        var dataArr = data.split(",");
+        var inputStr = dataArr;
+        song(inputStr[1]);
+
+       
+        
+        
+        
+        
+
+    })
 }
