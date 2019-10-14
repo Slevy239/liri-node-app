@@ -139,11 +139,7 @@ function doThis() {
         if (error) {
             return console.log(error);
         }
-
         var dataArr = data.split(",");
         song(dataArr[1]);
-
-
-
     })
 }

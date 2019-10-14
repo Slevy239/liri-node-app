@@ -1,5 +1,8 @@
 # liri-node-app
 
+
+
+
 ## functionality
 * Finds Concerts 
 * Searchs for Songs
@@ -26,3 +29,24 @@ Based on the content of the .txt file, this application is able to run it's cont
 ## Features
 
 This appilcation uses packages from NPM to retrieve the desired data from the aformentioned API's. These packages are based on specific dependencies detailed in the package.json file.
+
+## Dependencies
+ * fs
+ * axios
+ * node-spotify-api
+
+
+## Commands
+
+* "concert-this"  Artist
+    * Runs command through the concert function.
+    * Once this command is executed, artist and concert information will be displayed in the terminal.
+
+*  "spotify-this-song" Song
+    * Once this command is executed and the user searchs a song title, the function will call the Spotify API and return results in the terminal. 
+
+* "movie-this" Movie
+    * Once this command is executed and the user searches a movie title, the function will call the OMDB API to return details pertain to the specific film.
+
+* "do-what-it-says" 
+    * this specific function reads the random.txt file and import the content as the user input. Then the application is executed again with the imported information. In this case, the command would be "spotify-this-song" Tweezer.
