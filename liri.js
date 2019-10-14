@@ -1,13 +1,10 @@
 require("dotenv").config();
 
-var request = require("request")
 var keys = require("./keys.js");
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
-// var moment = require("moment");
-// moment().format();
-
 var axios = require("axios");
+var fs = require("fs")
 
 var command = process.argv[2];
 var input = process.argv;
@@ -54,7 +51,7 @@ function concert() {
                 console.log("");
                 console.log("==============================================");
                 console.log("Venue: " + results);
-                console.log("Date: " + converted )
+                console.log("Date: " + converted)
                 console.log("\n");
             }
 
@@ -81,14 +78,14 @@ function song(input) {
             console.log("\n");
             console.log("==============================================");
             console.log("");
-            console.log("--------" + inputStr.split('+').join(" ") + " by "+ artistName + "-------");
+            console.log("--------" + inputStr.split('+').join(" ") + " by " + artistName + "-------");
             console.log("");
             console.log("==============================================");
             console.log(" ")
             console.log("Song: " + songName);
             console.log(" ")
             console.log("Song link: " + songLink);
-            console.log;("Album link: " + albumLink);
+            console.log; ("Album link: " + albumLink);
             console.log(" ")
             console.log("\n");
 
@@ -98,44 +95,42 @@ function song(input) {
 }
 
 function movie(inputStr) {
-    if(!inputStr) {
+    if (!inputStr) {
         inputStr = "fight club";
         console.log("----------------------");
 
     }
-    axios.get("http://www.omdbapi.com/?t="+ inputStr +"&apikey=519a9c34")
-    .then(function(response) {
-        console.log("\n");
-        console.log("=============================================");
-        console.log("-------------------" + inputStr.split('+').join(" ") + "----------------");
-        console.log("=============================================");
-        console.log("Directed by: " + response.data.Director)
-        console.log("--------------------------------------------")
-        console.log("Starring: " + response.data.Actors);
-        console.log("--------------------------------------------")
+    axios.get("http://www.omdbapi.com/?t=" + inputStr + "&apikey=519a9c34")
+        .then(function (response) {
+            console.log("\n");
+            console.log("=============================================");
+            console.log("-------------------" + inputStr.split('+').join(" ") + "----------------");
+            console.log("=============================================");
+            console.log("Directed by: " + response.data.Director)
+            console.log("--------------------------------------------")
+            console.log("Starring: " + response.data.Actors);
+            console.log("--------------------------------------------")
 
-        console.log("Synopsis: " + response.data.Plot);
-        console.log("--------------------------------------------")
+            console.log("Synopsis: " + response.data.Plot);
+            console.log("--------------------------------------------")
 
-        console.log("*********************************************")
-        console.log("The film is rated " + response.data.imdbRating + "/10 out of " + response.data.imdbVotes + "on IMDB");
-        console.log("\n")
+            console.log("*********************************************")
+            console.log("The film is rated " + response.data.imdbRating + "/10 out of " + response.data.imdbVotes + "on IMDB");
+            console.log("\n")
 
 
-    })
-    .catch(function(error) {
-        if (error.response) {
-            console.log("---------------Data---------------");
-            console.log(error.response.data);
-            console.log("---------------Status---------------");
-            console.log(error.response.status);
-            console.log("---------------Status---------------");
-            console.log(error.response.headers);
-      
-        } 
-    })
-    
-   
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log("---------------Data---------------");
+                console.log(error.response.data);
+                console.log("---------------Status---------------");
+                console.log(error.response.status);
+                console.log("---------------Status---------------");
+                console.log(error.response.headers);
+
+            }
+        })
 }
 
 
