@@ -135,20 +135,15 @@ function movie(inputStr) {
 
 function doThis() {
 
-    fs.readFile("random.txt" ,"utf8", function(error, data) {
+    fs.readFile("random.txt", "utf8", function (error, data) {
         if (error) {
             return console.log(error);
         }
 
         var dataArr = data.split(",");
-        var inputStr = dataArr;
-        song(inputStr[1]);
+        song(dataArr[1]);
 
-       
-        
-        
-        
-        
+
 
     })
 }
