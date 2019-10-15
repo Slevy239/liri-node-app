@@ -153,7 +153,7 @@ function doThis() {
 
 }
 function log() {
-    fs.appendFile('log.txt', "\n" + process.argv[2] + ", " + process.argv[3], 'UTF-8', function (err, data) {
+    fs.appendFile('log.txt', process.argv[2] + ", " + process.argv[3] + "\n", 'UTF-8', function (err, data) {
         if (err) {
             console.log(err)
         }
