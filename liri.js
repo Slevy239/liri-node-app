@@ -51,7 +51,6 @@ function concert() {
                 var date = new Date(info.datetime);
                 var converted = date.toLocaleString();
 
-
                 console.log("\n");
                 console.log("==============================================");
                 console.log("-------------------" + inputStr.split('+').join(" ") + "----------------");
@@ -67,6 +66,7 @@ function concert() {
         .catch(function (err) {
             console.log(err);
         });
+        log() 
 }
 
 
@@ -98,6 +98,7 @@ function song(inputStr) {
             console.log("\n");
 
         })
+        log() 
 }
 
 function movie(inputStr) {
@@ -123,7 +124,7 @@ function movie(inputStr) {
             console.log("*********************************************")
             console.log("The film is rated " + response.data.imdbRating + "/10 out of " + response.data.imdbVotes + "on IMDB");
             console.log("\n")
-
+            log()
 
         })
         .catch(function (error) {
@@ -149,11 +150,15 @@ function doThis() {
         var dataArr = data.split(",");
         song(dataArr[1]);
 
+        log(dataArr);
     })
-
+    log() 
 }
+
+
 function log() {
-    fs.appendFile('log.txt', process.argv[2] + ", " + process.argv[3] + "\n", 'UTF-8', function (err, data) {
+
+    fs.appendFile('log.txt',  command + " " + inputStr + "\n", 'UTF-8', function (err, data) {
         if (err) {
             console.log(err)
         }
