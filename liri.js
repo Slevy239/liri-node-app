@@ -30,30 +30,39 @@ switch (command) {
     case "do-what-it-says":
         doThis(inputStr);
         break;
+    case "write-file":
+        log(inputStr);
 };
 
 function concert() {
+    if (inputStr === "") {
+        inputStr = "Trey Anastasio"
+    }
     axios.get("https://rest.bandsintown.com/artists/" + inputStr + "/events?app_id=codingbootcamp")
         .then(function (response) {
             var info = response.data[0]
 
             for (var i = 0; i < response.data.length; i++) {
                 var results = response.data[i].venue.name;
+                var city = response.data[i].venue.city;
+                var state = response.data[i].venue.region;
+                var country = response.data[i].venue.country;
 
                 var date = new Date(info.datetime);
                 var converted = date.toLocaleString();
 
+
                 console.log("\n");
                 console.log("==============================================");
-                console.log("");
                 console.log("-------------------" + inputStr.split('+').join(" ") + "----------------");
-                console.log("");
                 console.log("==============================================");
                 console.log("Venue: " + results);
-                console.log("Date: " + converted)
+                console.log("----------------------------------------------")
+                console.log("Location: " + city + ", " + state + " " + country);
+                console.log("----------------------------------------------")
+                console.log("Date: " + converted);
                 console.log("\n");
             }
-
         })
         .catch(function (err) {
             console.log(err);
@@ -89,8 +98,6 @@ function song(inputStr) {
             console.log("\n");
 
         })
-
-
 }
 
 function movie(inputStr) {
@@ -141,5 +148,15 @@ function doThis() {
         }
         var dataArr = data.split(",");
         song(dataArr[1]);
+
     })
+
 }
+function log() {
+    fs.appendFile('log.txt', "\n" + process.argv[2] + ", " + process.argv[3], 'UTF-8', function (err, data) {
+        if (err) {
+            console.log(err)
+        }
+        console.log("log.txt has been updated!")
+    });
+}   
