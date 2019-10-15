@@ -11,12 +11,14 @@ var input = process.argv;
 var inputArr = [];
 var inputStr = '';
 
+//dynamic input
 for (var i = 3; i < input.length; i++) {
     inputArr.push(input[i]);
 }
 
 inputStr = inputArr.join("+");
 
+//runs function depending on input
 switch (command) {
     case "concert-this":
         concert(inputStr);
@@ -34,6 +36,7 @@ switch (command) {
         log(inputStr);
 };
 
+
 function concert() {
     if (inputStr === "") {
         inputStr = "Trey Anastasio"
@@ -42,6 +45,7 @@ function concert() {
         .then(function (response) {
             var info = response.data[0]
 
+            //loop through API data
             for (var i = 0; i < response.data.length; i++) {
                 var results = response.data[i].venue.name;
                 var city = response.data[i].venue.city;
@@ -57,7 +61,7 @@ function concert() {
                 console.log("==============================================");
                 console.log("Venue: " + results);
                 console.log("----------------------------------------------")
-                console.log("Location: " + city + ", " + state + " " + country);
+                console.log("Location: " + city + ", " + state + ". " + country);
                 console.log("----------------------------------------------")
                 console.log("Date: " + converted);
                 console.log("\n");
@@ -66,7 +70,7 @@ function concert() {
         .catch(function (err) {
             console.log(err);
         });
-        log() 
+    log()
 }
 
 
@@ -76,6 +80,7 @@ function song(inputStr) {
     }
     spotify.search({ type: "track", query: inputStr })
         .then(function (response) {
+            //loop through API data
             for (var i = 0; i < 5; i++) {
                 var artistName = response.tracks.items[0].artists[0].name;
                 var songName = response.tracks.items[0].name;
@@ -98,7 +103,7 @@ function song(inputStr) {
             console.log("\n");
 
         })
-        log() 
+    log()
 }
 
 function movie(inputStr) {
@@ -150,15 +155,13 @@ function doThis() {
         var dataArr = data.split(",");
         song(dataArr[1]);
 
-        log(dataArr);
-    })
-    log() 
+    });
 }
 
 
 function log() {
 
-    fs.appendFile('log.txt',  command + " " + inputStr + "\n", 'UTF-8', function (err, data) {
+    fs.appendFile('log.txt', command + " " + inputStr + "\n", 'UTF-8', function (err, data) {
         if (err) {
             console.log(err)
         }
